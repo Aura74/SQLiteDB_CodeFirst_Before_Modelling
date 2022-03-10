@@ -19,7 +19,7 @@ namespace SeidoApplication
             BuildOptions();
 
             #region Uncomment to seed and query the Database
-            SeedDataBase();
+            //SeedDataBase();
             QueryDatabaseAsync().Wait();
             #endregion
         }
