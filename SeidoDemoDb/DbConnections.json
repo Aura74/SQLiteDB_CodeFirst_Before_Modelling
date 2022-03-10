@@ -1,0 +1,9 @@
+{
+  "ConnectionStrings": {
+    "MariaDB_northwind": "server=localhost;uid=martin;pwd=seidoab;database=northwind",
+    "MariaDB_seidodemo": "server=localhost;uid=martin;pwd=seidoab;database=seidodemo",
+    "SQLite_northwind": "Data Source=C:\\SQLDatabaser\\Northwind_SQLite.db",
+    "SQLite_seidodemo": "Data Source=C:\\SQLDatabaser\\SeidoDemo_SQLite.db",
+    "SQLite_seidowebservice": "Data Source=C:\\SQLDatabaser\\SeidoWebService_SQLite.db"
+  }
+}
