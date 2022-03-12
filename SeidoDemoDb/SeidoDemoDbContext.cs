@@ -9,8 +9,8 @@ namespace SeidoDemoDb
     public class SeidoDemoDbContext:DbContext
     {
         #region Uncomment to create the Data model
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Necklace> Necklaces { get; set; }
+        public DbSet<Pearl> Pearl { get; set; }
         #endregion
 
         public SeidoDemoDbContext() { }

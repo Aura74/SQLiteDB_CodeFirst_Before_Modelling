@@ -10,7 +10,7 @@ namespace SeidoDemoDb.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Customers",
+                name: "Necklaces",
                 columns: table => new
                 {
                     CustomerID = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -22,7 +22,7 @@ namespace SeidoDemoDb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "Pearl",
                 columns: table => new
                 {
                     OrderID = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -35,24 +35,24 @@ namespace SeidoDemoDb.Migrations
                     table.ForeignKey(
                         name: "FK_Orders_Customers_CustomerID",
                         column: x => x.CustomerID,
-                        principalTable: "Customers",
-                        principalColumn: "CustomerID",
+                        principalTable: "Necklaces",
+                        principalColumn: "NecklaceID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_CustomerID",
-                table: "Orders",
-                column: "CustomerID");
+                table: "Pearl",
+                column: "NecklaceID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Pearl");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Necklaces");
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
-
 using SeidoDemoDb;
 using SeidoDemoModels;
 
@@ -18,17 +17,15 @@ namespace SeidoApplication
         {
             BuildOptions();
 
-            #region Uncomment to seed and query the Database
-            //SeedDataBase();
+            SeedDataBase();
             QueryDatabaseAsync().Wait();
-            #endregion
         }
 
         private static void BuildOptions()
         {
             _optionsBuilder = new DbContextOptionsBuilder<SeidoDemoDbContext>();
 
-            #region Ensuring appsettings.json is in the right location
+
             Console.WriteLine($"DbConnections Directory: {DBConnection.DbConnectionsDirectory}");
 
             var connectionString = DBConnection.ConfigurationRoot.GetConnectionString("SQLite_seidodemo");
@@ -39,34 +36,34 @@ namespace SeidoApplication
                 Console.WriteLine($"Please copy the 'DbConnections.json' to this location");
                 return;
             }
-            #endregion
+
 
             _optionsBuilder.UseSqlite(connectionString);
         }
 
-        #region Uncomment to seed and query the Database
+
 
         private static void SeedDataBase()
         {
             using (var db = new SeidoDemoDbContext(_optionsBuilder.Options))
             {
                 //Create some customers
-                var CustomerList = new List<Customer>();
+                var necklaces = new List<Necklace>();
                 for (int i = 0; i < 10; i++)
                 {
-                    CustomerList.Add(new Customer());
+                    necklaces.Add(new Necklace());
                 }
                 //Create some orders randomly linked to customers
                 var rnd = new Random();
-                var OrderList = new List<Order>();
-                for (int i = 0; i < 20; i++)
+                var PList = new List<Pearl>();
+                for (int i = 0; i < 5; i++)
                 {
-                    OrderList.Add(new Order(CustomerList[rnd.Next(0, CustomerList.Count)].CustomerID));
+                    PList.Add(new Pearl(necklaces[rnd.Next(0, necklaces.Count)].NecklaceID));
                 }
 
                 //Add it to the Database
-                CustomerList.ForEach(cust => db.Customers.Add(cust));
-                OrderList.ForEach(order => db.Orders.Add(order));
+                necklaces.ForEach(cust => db.Necklaces.Add(cust));
+                PList.ForEach(order => db.Pearl.Add(order));
 
                 db.SaveChanges();
             }
@@ -75,14 +72,13 @@ namespace SeidoApplication
         {
             using (var db = new SeidoDemoDbContext(_optionsBuilder.Options))
             {
-                var customers = await db.Customers.CountAsync();
-                var orders = await db.Orders.CountAsync();
+                var cs = await db.Necklaces.CountAsync();
+                var ps = await db.Pearl.CountAsync();
 
-                Console.WriteLine($"Nr of Customers: {customers}");
-                Console.WriteLine($"Nr of Orders: {orders}");
+                Console.WriteLine($"Nr of Necklaces: {cs}");
+                Console.WriteLine($"Nr of Pearl: {ps}");
             }
         }
 
-        #endregion
     }
 }

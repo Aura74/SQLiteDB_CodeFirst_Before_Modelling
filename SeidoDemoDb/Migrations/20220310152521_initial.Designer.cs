@@ -19,54 +19,54 @@ namespace SeidoDemoDb.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.2");
 
-            modelBuilder.Entity("SeidoDemoModels.Customer", b =>
+            modelBuilder.Entity("SeidoDemoModels.Necklace", b =>
                 {
-                    b.Property<Guid>("CustomerID")
+                    b.Property<Guid>("NecklaceID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasColumnName("CustomerID");
+                        .HasColumnName("NecklaceID");
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar (200)");
 
-                    b.HasKey("CustomerID");
+                    b.HasKey("NecklaceID");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Necklaces");
                 });
 
-            modelBuilder.Entity("SeidoDemoModels.Order", b =>
+            modelBuilder.Entity("SeidoDemoModels.Pearl", b =>
                 {
-                    b.Property<Guid>("OrderID")
+                    b.Property<Guid>("PearlID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasColumnName("OrderID");
+                        .HasColumnName("PearlID");
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar (200)");
 
-                    b.Property<Guid>("CustomerID")
+                    b.Property<Guid>("NecklaceID")
                         .HasColumnType("TEXT")
-                        .HasColumnName("CustomerID");
+                        .HasColumnName("NecklaceID");
 
-                    b.HasKey("OrderID");
+                    b.HasKey("PearlID");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("NecklaceID");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Pearl");
                 });
 
-            modelBuilder.Entity("SeidoDemoModels.Order", b =>
+            modelBuilder.Entity("SeidoDemoModels.Pearl", b =>
                 {
-                    b.HasOne("SeidoDemoModels.Customer", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerID")
+                    b.HasOne("SeidoDemoModels.Necklace", null)
+                        .WithMany("Pearl")
+                        .HasForeignKey("NecklaceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SeidoDemoModels.Customer", b =>
+            modelBuilder.Entity("SeidoDemoModels.Necklace", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("Pearl");
                 });
 #pragma warning restore 612, 618
         }
