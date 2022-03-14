@@ -20,7 +20,6 @@ namespace SeidoDemoModels
 
         public virtual List<Pearl> Orders { get; set; } = new List<Pearl>();
         
-        
         public Necklace ()
         {
             NecklaceID = Guid.NewGuid();

@@ -16,7 +16,6 @@ namespace SeidoApplication
         static void Main(string[] args)
         {
             BuildOptions();
-
             SeedDataBase();
             QueryDatabaseAsync().Wait();
         }
@@ -40,9 +39,7 @@ namespace SeidoApplication
 
             _optionsBuilder.UseSqlite(connectionString);
         }
-
-
-
+        
         private static void SeedDataBase()
         {
             using (var db = new SeidoDemoDbContext(_optionsBuilder.Options))
